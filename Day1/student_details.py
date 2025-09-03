@@ -1,0 +1,7 @@
+s_number,s_name=map(str,input("Enter roll number and name:").split())
+s_m1,s_m2,s_m3=map(int,input("Enter marks in three subjects:").split())
+print("Student name:",s_name)
+print("Student roll number:",s_number)
+print("Student marks in three subjects:",s_m1,s_m2,s_m3)
+print("Student total marks:",s_m1+s_m2+s_m3)
+print("Student average marks:",round((s_m1+s_m2+s_m3)/3,2))
