@@ -1,0 +1,8 @@
+def isPalindrome(n):
+    if n==int(str(n)[::-1]):
+        return True
+    else:
+        return False
+for i in range(1,150):
+    if isPalindrome(i):
+        print(i,end=' ')
