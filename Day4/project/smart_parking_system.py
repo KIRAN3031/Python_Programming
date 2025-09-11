@@ -230,7 +230,7 @@ lot.show_spots()
 print()
 
 # Unpark a Vehicle + Payment
-lot.unpark_vehicle(car1, hours=3)  # Car stayed 3 hours
+lot.unpark_vehicle(car1, hours=3)  # Car stayed 3 hoursre
 print()
 
 # Final Status
