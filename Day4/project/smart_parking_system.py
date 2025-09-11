@@ -199,40 +199,39 @@ class UPIPayment(Payment):
 
 
 # Task 5: Main program demonstration
-if __name__ == "__main__":
-    # Create Parking Lot and Spots
-    lot = ParkingLot("CityMall Parking")
-    lot.add_spot(ParkingSpot(1, "S"))
-    lot.add_spot(ParkingSpot(2, "M"))
-    lot.add_spot(ParkingSpot(3, "M"))
-    lot.add_spot(ParkingSpot(4, "L"))
-    lot.add_spot(ParkingSpot(5, "XL"))
-    print(f"Parking Lot Created: {lot.name} Total Spots Added: {len(lot.spots)}\n")
+# Create Parking Lot and Spots
+lot = ParkingLot("CityMall Parking")
+lot.add_spot(ParkingSpot(1, "S"))
+lot.add_spot(ParkingSpot(2, "M"))
+lot.add_spot(ParkingSpot(3, "M"))
+lot.add_spot(ParkingSpot(4, "L"))
+lot.add_spot(ParkingSpot(5, "XL"))
+print(f"Parking Lot Created: {lot.name} Total Spots Added: {len(lot.spots)}\n")
 
-    # Create Vehicles
-    bike1 = Bike("B101", "TS01AB1234", "Rahul", True)
-    car1 = Car("C201", "TS05CD5678", "Priya", 5)
-    suv1 = SUV("S301", "TS09EF9012", "Anjali", True)
-    truck1 = Truck("T401", "TS11XY4455", "Ravi", 12)
+# Create Vehicles
+bike1 = Bike("B101", "TS01AB1234", "Rahul", True)
+car1 = Car("C201", "TS05CD5678", "Priya", 5)
+suv1 = SUV("S301", "TS09EF9012", "Anjali", True)
+truck1 = Truck("T401", "TS11XY4455", "Ravi", 12)
 
-    print("Vehicles Created:")
-    bike1.display()
-    car1.display()
-    suv1.display()
-    truck1.display()
-    print()
+print("Vehicles Created:")
+bike1.display()
+car1.display()
+suv1.display()
+truck1.display()
+print()
 
-    # Park Vehicles
-    lot.park_vehicle(bike1)   # Should go to Spot 1 (S)
-    lot.park_vehicle(car1)    # Should go to Spot 2 (M)
-    lot.park_vehicle(suv1)    # Should go to Spot 4 (L)
-    lot.park_vehicle(truck1)  # Should go to Spot 5 (XL)
-    lot.show_spots()
-    print()
+# Park Vehicles
+lot.park_vehicle(bike1)   # Should go to Spot 1 (S)
+lot.park_vehicle(car1)    # Should go to Spot 2 (M)
+lot.park_vehicle(suv1)    # Should go to Spot 4 (L)
+lot.park_vehicle(truck1)  # Should go to Spot 5 (XL)
+lot.show_spots()
+print()
 
-    # Unpark a Vehicle + Payment
-    lot.unpark_vehicle(car1, hours=3)  # Car stayed 3 hours
-    print()
+# Unpark a Vehicle + Payment
+lot.unpark_vehicle(car1, hours=3)  # Car stayed 3 hours
+print()
 
-    # Final Status
-    lot.show_spots()
+# Final Status
+lot.show_spots()
