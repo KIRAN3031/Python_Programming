@@ -148,7 +148,7 @@ def member_details():
 
 def overdue_report():
     days = int(input("Overdue days threshold (default 30): ") or "30")
-    threshold = (datetime.utcnow() - timedelta(days=days)).isoformat()
+    threshold = (datetime.utcnow - timedelta(days=days)).isoformat()
     overdue_list = sb.table("borrow_records").select("record_id, member_id, book_id, borrow_date, books(title), members(name)").lt("borrow_date", threshold).is_("return_date", None).execute().data
     if overdue_list:
         for rec in overdue_list:

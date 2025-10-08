@@ -145,13 +145,18 @@
         3. Find patients who never booked any appointment (LEFT JOIN).
 
         4. Show doctor names along with total patients consulted.
+                    SELECT d.name AS doctor_name, COUNT(DISTINCT a.patient_id) AS total_patients
+                    FROM Doctors d
+                    LEFT JOIN Appointments a ON d.doctor_id = a.doctor_id
+                    GROUP BY d.name;
+
 
         5. Show all doctors and their patients (FULL JOIN, if supported).
-                SELECT d.name AS doctor_name, p.name AS patient_name
-                FROM Doctors d
-                FULL JOIN Appointments a ON d.doctor_id = a.doctor_id
-                FULL JOIN Patients p ON a.patient_id = p.patient_id
-                ORDER BY d.name NULLS LAST, p.name NULLS LAST;
+                    SELECT d.name AS doctor_name, p.name AS patient_name
+                    FROM Doctors d
+                    FULL JOIN Appointments a ON d.doctor_id = a.doctor_id
+                    FULL JOIN Patients p ON a.patient_id = p.patient_id
+                    ORDER BY d.name NULLS LAST, p.name NULLS LAST;
 
 
 
@@ -197,3 +202,83 @@
                 FROM Doctors d
                 LEFT JOIN Appointments a ON d.doctor_id = a.doctor_id
                 WHERE a.appointment_id IS NULL;```
+
+
+
+
+
+
+
+----------------------------------------------------------------------------------------
+# Python with database
+## Requirements:
+## 1) Python Program
+## 2) Supabase Client
+## 3) Supabase
+
+
+```create table public.products (
+  product_id serial not null,
+  name text not null,
+  sku text not null,
+  price numeric(10, 2) not null,
+  stock integer not null default 0,
+  created_at timestamp with time zone null default now(),
+  constraint products_pkey primary key (product_id),
+  constraint products_sku_key unique (sku),
+  constraint products_price_check check ((price > (0)::numeric))
+) TABLESPACE pg_default;
+```
+
+
+# Project
+# Online Library Management System (with Supabase/Postgres + Python):
+        Build a command-line application in Python that connects to a Supabase Postgres database and performs all database operations as they happen in real life:
+        Register students/members.
+        Add/update/remove books.
+        Borrow/return books (transaction).
+        Generate reports (like overdue, most borrowed books).
+        🗄️ Database Schema (create in Supabase → SQL Editor)
+        -- Students / Members
+        ```CREATE TABLE members (
+            member_id serial PRIMARY KEY,
+            name text NOT NULL,
+            email text UNIQUE NOT NULL,
+            join_date timestamptz DEFAULT NOW()
+        );
+        ```
+        
+        -- Books
+        ```CREATE TABLE books (
+            book_id serial PRIMARY KEY,
+            title text NOT NULL,
+            author text NOT NULL,
+            category text,
+            stock int NOT NULL DEFAULT 1
+        );
+        ```
+        
+        -- Transactions (Borrow/Return)
+        ```CREATE TABLE borrow_records (
+            record_id serial PRIMARY KEY,
+            member_id int REFERENCES members(member_id),
+            book_id int REFERENCES books(book_id),
+            borrow_date timestamptz DEFAULT NOW(),
+            return_date timestamptz
+        );
+        ```
+        
+        1. Create (Insert)
+        Register new members (add_member(name, email)).
+        Add new books (add_book(title, author, category, stock)).
+        2. Read (Select)
+        List all books with availability.
+        Search books by title/author/category.
+        Show member details and their borrowed books.
+        3. Update
+        Update book stock (e.g., when more copies are purchased).
+        Update member info (e.g., change email).
+        4. Delete
+        Delete a member (only if no borrowed books).
+        Delete a book (only if not borrowed).
+ 
